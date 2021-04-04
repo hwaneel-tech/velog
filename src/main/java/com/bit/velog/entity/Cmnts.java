@@ -4,10 +4,7 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
@@ -33,4 +30,7 @@ public class Cmnts {
     @Column(name = "editdate")
     @UpdateTimestamp
     private Timestamp editDate;
+
+    @ManyToOne
+    private Board board;
 }

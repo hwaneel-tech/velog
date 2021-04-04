@@ -1,17 +1,18 @@
 package com.bit.velog.entity;
 
-import lombok.Data;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Data
 @Entity
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "board")
 public class Board {
     @Id
@@ -48,4 +49,18 @@ public class Board {
 
     @Column(name = "myrownum")
     private int myRowNum;
+
+    @Builder
+    public Board(int num, String writer, String title, String contents, byte image, int readCount
+    ,int thumbs,  int isTemp, int myRowNum) {
+        this.num = num;
+        this.writer = writer;
+        this.title = title;
+        this.contents = contents;
+        this.image = image;
+        this.readCount = readCount;
+        this.thumbs = thumbs;
+        this.isTemp = isTemp;
+        this.myRowNum = myRowNum;
+    }
 }
